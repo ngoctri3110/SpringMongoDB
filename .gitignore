@@ -1,0 +1,66 @@
+# Maven
+target/
+*.class
+*.jar
+*.war
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.asc
+*.lst
+.mtj.tmp/
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+*.sw*
+*~
+.DS_Store
+
+# Gradle
+.gradle/
+build/
+gradle/
+
+# Build
+out/
+bin/
+dist/
+
+# Logs
+*.log
+logs/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Spring Boot
+spring-boot-devtools.properties
+
+# Testcontainers
+.testcontainers.properties
+
+# OS
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+
+# Documentation (Internal - Do NOT commit)
+docs/
+!docs/SETUP_GUIDE.md
+!docs/IMPLEMENTATION_SUMMARY.md
+!docs/GITHUB_ACTIONS_GUIDE.md
+
+# Local files
+*.bak
+*.tmp
+*.swp
+.vscode/
+.idea/
+*.iml
