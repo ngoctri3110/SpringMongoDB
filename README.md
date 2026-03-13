@@ -71,30 +71,31 @@ curl -X GET http://localhost:8080/v3/api-docs
 
 ## 🏗️ System Architecture
 
-### Entity Relationship Diagram
+### Document Relationships (MongoDB)
+
+**Note:** MongoDB uses document-based relationships, not ERD. Documents can embed related data or reference other collections.
+
+**Collection Structure:**
 
 ```
-User → Orders (1-to-many)
-     ↓
-     → Reviews (1-to-many)
-     ↓
-     → Cart (1-to-1)
-     ↓
-     → Addresses (1-to-many)
+Collections:
+├── users              (User documents with embedded addresses)
+├── products           (Product documents with categoryId reference)
+├── categories         (Category documents)
+├── orders             (Order documents with embedded items)
+├── carts              (Cart documents with embedded items)
+├── reviews            (Review documents)
+├── inventory          (Inventory documents)
+├── payment_transactions (Payment records)
 
-Product → Categories (many-to-1)
-        ↓
-        → Reviews (1-to-many)
-        ↓
-        → Inventory (1-to-1)
-        ↓
-        → OrderItems (1-to-many)
-
-Order → OrderItems (1-to-many)
-      ↓
-      → PaymentTransactions (1-to-many)
-      ↓
-      → ShippingInfo (1-to-1)
+Key Relationships:
+- User ← Orders (userId reference)
+- User ← Reviews (userId reference)
+- User ← Cart (userId reference)
+- Product ← Orders (productId reference via order items)
+- Product ← Reviews (productId reference)
+- Category ← Products (categoryId reference)
+- Order ← Payments (orderId reference)
 ```
 
 ### API Endpoints Overview
