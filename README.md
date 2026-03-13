@@ -555,6 +555,22 @@ This project is provided as-is for educational and commercial use.
 
 ---
 
+## 📝 Recent Updates
+
+### Version 1.1.0 (March 13, 2026)
+- ✅ Fixed service layer compilation errors
+- ✅ Added GitHub Actions CI/CD workflows (build, docker, codeql)
+- ✅ Fixed CartController method calls to match CartService
+- ✅ Fixed MigrationService user/category field mappings
+- ✅ Added missing DTO classes (RefundPaymentRequest, UpdateOrderStatusRequest, etc.)
+- ✅ All source code compilation errors fixed
+
+### Known Issues
+- SearchController advanced search endpoints require additional implementation
+- Some SearchService methods need refinement
+
+---
+
 **Happy Coding! 🚀**
 
-*Last Updated: March 2026*
+*Last Updated: March 13, 2026*

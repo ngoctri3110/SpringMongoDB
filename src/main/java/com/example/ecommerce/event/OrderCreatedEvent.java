@@ -18,7 +18,7 @@ public class OrderCreatedEvent extends ApplicationEvent {
     private final String userId;
     private final String orderNumber;
     private final BigDecimal totalAmount;
-    private final LocalDateTime timestamp;
+    private final LocalDateTime eventTimestamp;
 
     /**
      * Create an OrderCreatedEvent from an Order entity.
@@ -32,6 +32,6 @@ public class OrderCreatedEvent extends ApplicationEvent {
         this.userId = order.getUserId();
         this.orderNumber = order.getOrderNumber();
         this.totalAmount = order.getTotalAmount();
-        this.timestamp = LocalDateTime.now();
+        this.eventTimestamp = LocalDateTime.now();
     }
 }

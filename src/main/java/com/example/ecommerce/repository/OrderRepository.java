@@ -1,7 +1,6 @@
 package com.example.ecommerce.repository;
 
 import com.example.ecommerce.model.Order;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -19,7 +18,6 @@ import java.util.Optional;
  * @version 1.0
  */
 @Repository
-@Slf4j
 public interface OrderRepository extends MongoRepository<Order, String>, OrderRepositoryCustom {
 
     /**

@@ -53,9 +53,12 @@ Thumbs.db
 
 # Documentation (Internal - Do NOT commit)
 docs/
-!docs/SETUP_GUIDE.md
-!docs/IMPLEMENTATION_SUMMARY.md
-!docs/GITHUB_ACTIONS_GUIDE.md
+*.md
+!README.md
+!README_LEARNING.md
+
+# Amp local files
+.amp/
 
 # Local files
 *.bak

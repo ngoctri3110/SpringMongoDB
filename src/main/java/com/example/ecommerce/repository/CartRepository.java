@@ -1,7 +1,6 @@
 package com.example.ecommerce.repository;
 
 import com.example.ecommerce.model.Cart;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,7 +14,6 @@ import java.util.Optional;
  * @version 1.0
  */
 @Repository
-@Slf4j
 public interface CartRepository extends MongoRepository<Cart, String> {
 
     /**

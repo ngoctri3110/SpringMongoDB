@@ -1,13 +1,13 @@
 package com.example.ecommerce.repository;
 
 import com.example.ecommerce.model.PaymentTransaction;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -18,7 +18,6 @@ import java.util.Optional;
  * @version 1.0
  */
 @Repository
-@Slf4j
 public interface PaymentTransactionRepository extends MongoRepository<PaymentTransaction, String> {
 
     /**
@@ -71,4 +70,23 @@ public interface PaymentTransactionRepository extends MongoRepository<PaymentTra
      * @return count of transactions matching criteria
      */
     long countByStatusAndCreatedAtBetween(String status, LocalDateTime from, LocalDateTime to);
+
+    /**
+     * Finds all payment transactions for a specific order, sorted by creation date (newest first).
+     * MongoDB equivalent: db.paymentTransactions.find({ orderId: orderId }).sort({ createdAt: -1 })
+     *
+     * @param orderId the order ID
+     * @return list of payment transactions for the order sorted by creation date descending
+     */
+    List<PaymentTransaction> findByOrderIdOrderByCreatedAtDesc(String orderId);
+
+    /**
+     * Finds all payment transactions for a specific user, sorted by creation date (newest first).
+     * MongoDB equivalent: db.paymentTransactions.find({ userId: userId }).sort({ createdAt: -1 })
+     *
+     * @param userId the user ID
+     * @param pageable pagination information
+     * @return paginated page of payment transactions for the user sorted by creation date descending
+     */
+    Page<PaymentTransaction> findByUserIdOrderByCreatedAtDesc(String userId, Pageable pageable);
 }

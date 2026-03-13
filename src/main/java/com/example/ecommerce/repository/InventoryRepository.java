@@ -1,7 +1,6 @@
 package com.example.ecommerce.repository;
 
 import com.example.ecommerce.model.Inventory;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -19,7 +18,6 @@ import java.util.Optional;
  * @version 1.0
  */
 @Repository
-@Slf4j
 public interface InventoryRepository extends MongoRepository<Inventory, String> {
 
     /**
@@ -47,7 +45,7 @@ public interface InventoryRepository extends MongoRepository<Inventory, String> 
      * @param productId the product ID
      * @param quantity the new quantity value
      */
-    @Query(value = "{ 'productId': ?0 }", update = "{ '$set': { 'quantity': ?1 } }")
+    @Query("{ 'productId': ?0 }")
     void updateStock(String productId, int quantity);
 
     /**

@@ -1,5 +1,6 @@
 package com.example.ecommerce.service;
 
+import com.example.ecommerce.dto.request.CreateOrderRequestDTO;
 import com.example.ecommerce.exception.ResourceNotFoundException;
 import com.example.ecommerce.model.*;
 import com.example.ecommerce.repository.*;
@@ -48,7 +49,7 @@ public class OrderService {
      * @throws InsufficientStockException if inventory is insufficient for any item
      */
     @Transactional
-    public Order createOrder(String userId, CreateOrderRequest request) {
+    public Order createOrder(String userId, CreateOrderRequestDTO request) {
         log.info("Creating order for user: {}", userId);
 
         // Validate and collect order items with product details
@@ -248,55 +249,4 @@ public class OrderService {
     public long countOrdersByStatus(String status) {
         return orderRepository.countByStatus(status);
     }
-}
-
-/**
- * Custom exception for insufficient inventory.
- */
-class InsufficientStockException extends RuntimeException {
-    public InsufficientStockException(String message) {
-        super(message);
     }
-}
-
-/**
- * DTO for order creation request.
- * Contains order items, shipping address, and payment information.
- */
-class CreateOrderRequest {
-    private List<CartItem> items;
-    private Address shippingAddress;
-    private PaymentInfo paymentInfo;
-
-    public CreateOrderRequest() {}
-
-    public CreateOrderRequest(List<CartItem> items, Address shippingAddress, PaymentInfo paymentInfo) {
-        this.items = items;
-        this.shippingAddress = shippingAddress;
-        this.paymentInfo = paymentInfo;
-    }
-
-    public List<CartItem> getItems() {
-        return items;
-    }
-
-    public void setItems(List<CartItem> items) {
-        this.items = items;
-    }
-
-    public Address getShippingAddress() {
-        return shippingAddress;
-    }
-
-    public void setShippingAddress(Address shippingAddress) {
-        this.shippingAddress = shippingAddress;
-    }
-
-    public PaymentInfo getPaymentInfo() {
-        return paymentInfo;
-    }
-
-    public void setPaymentInfo(PaymentInfo paymentInfo) {
-        this.paymentInfo = paymentInfo;
-    }
-}

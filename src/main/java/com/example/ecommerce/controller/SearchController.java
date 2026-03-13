@@ -80,8 +80,8 @@ public class SearchController {
         log.info("GET /api/v1/search/products/advanced - Advanced search with request: {}", request);
         
         Pageable pageable = PageRequest.of(
-                request.getPage() != null ? request.getPage() : 0,
-                request.getSize() != null ? request.getSize() : 10
+                request.getPageNumber() != null ? request.getPageNumber() : 0,
+                request.getPageSize() != null ? request.getPageSize() : 10
         );
         Page<ProductResponse> pageResponse = searchService.advancedSearch(request, pageable);
         

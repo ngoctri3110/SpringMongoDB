@@ -17,7 +17,7 @@ public class PaymentProcessedEvent extends ApplicationEvent {
     private final String paymentId;
     private final BigDecimal amount;
     private final String status; // SUCCESS, FAILURE
-    private final LocalDateTime timestamp;
+    private final LocalDateTime eventTimestamp;
 
     /**
      * Create a PaymentProcessedEvent.
@@ -35,6 +35,6 @@ public class PaymentProcessedEvent extends ApplicationEvent {
         this.paymentId = paymentId;
         this.amount = amount;
         this.status = status;
-        this.timestamp = LocalDateTime.now();
+        this.eventTimestamp = LocalDateTime.now();
     }
 }

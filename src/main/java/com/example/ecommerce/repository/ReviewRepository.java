@@ -1,7 +1,6 @@
 package com.example.ecommerce.repository;
 
 import com.example.ecommerce.model.Review;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -18,7 +17,6 @@ import java.util.Optional;
  * @version 1.0
  */
 @Repository
-@Slf4j
 public interface ReviewRepository extends MongoRepository<Review, String> {
 
     /**

@@ -17,7 +17,7 @@ public class ReviewCreatedEvent extends ApplicationEvent {
     private final String productId;
     private final String userId;
     private final int rating;
-    private final LocalDateTime timestamp;
+    private final LocalDateTime eventTimestamp;
 
     /**
      * Create a ReviewCreatedEvent from a Review entity.
@@ -31,6 +31,6 @@ public class ReviewCreatedEvent extends ApplicationEvent {
         this.productId = review.getProductId();
         this.userId = review.getUserId();
         this.rating = review.getRating();
-        this.timestamp = LocalDateTime.now();
+        this.eventTimestamp = LocalDateTime.now();
     }
 }

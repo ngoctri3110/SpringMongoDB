@@ -109,7 +109,7 @@ public class AnalyticsService {
 
         LocalDateTime startDate = daysBefore > 0
                 ? LocalDateTime.now().minusDays(daysBefore)
-                : LocalDateTime.of(2000, 1, 1); // Very old date for "all time"
+                : LocalDateTime.of(2000, 1, 1, 0, 0); // Very old date for "all time"
 
         Aggregation aggregation = Aggregation.newAggregation(
                 // Match orders within timeframe
@@ -137,7 +137,7 @@ public class AnalyticsService {
         AnalyticsResponse response = new AnalyticsResponse();
         response.setAnalyticsType("TOP_PRODUCTS");
         response.setData(topProducts);
-        response.setTotalCount(topProducts.size());
+        response.setTotalCount((long) topProducts.size());
         response.setStartDate(startDate);
         response.setEndDate(LocalDateTime.now());
 
@@ -184,7 +184,7 @@ public class AnalyticsService {
         AnalyticsResponse response = new AnalyticsResponse();
         response.setAnalyticsType("CATEGORY_STATS");
         response.setData(categoryStatsList);
-        response.setTotalCount(categoryStatsList.size());
+        response.setTotalCount((long) categoryStatsList.size());
         response.setEndDate(LocalDateTime.now());
 
         log.debug("Category statistics generated - Count: {}", categoryStatsList.size());
@@ -223,7 +223,7 @@ public class AnalyticsService {
         AnalyticsResponse response = new AnalyticsResponse();
         response.setAnalyticsType("USER_STATS");
         response.setData(Collections.singletonList(stats));
-        response.setTotalCount(1);
+        response.setTotalCount(1L);
         response.setEndDate(LocalDateTime.now());
 
         log.debug("User statistics generated - Total Orders: {}, Total Spent: {}", 
@@ -267,7 +267,7 @@ public class AnalyticsService {
         AnalyticsResponse response = new AnalyticsResponse();
         response.setAnalyticsType("LOW_STOCK_ALERTS");
         response.setData(alerts);
-        response.setTotalCount(alerts.size());
+        response.setTotalCount((long) alerts.size());
         response.setEndDate(LocalDateTime.now());
 
         log.debug("Low stock alerts generated - Count: {}", alerts.size());
@@ -319,7 +319,7 @@ public class AnalyticsService {
         AnalyticsResponse response = new AnalyticsResponse();
         response.setAnalyticsType("DASHBOARD");
         response.setData(Collections.singletonList(stats));
-        response.setTotalCount(1);
+        response.setTotalCount(1L);
         response.setEndDate(LocalDateTime.now());
 
         log.debug("Dashboard statistics generated");

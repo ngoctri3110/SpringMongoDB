@@ -281,17 +281,17 @@ public class MigrationService {
     /**
      * Creates test categories for demo purposes.
      */
-    private List<Category> createTestCategories() {
-        List<Category> categories = new ArrayList<>();
+    private List<com.example.ecommerce.model.Category> createTestCategories() {
+        List<com.example.ecommerce.model.Category> categories = new ArrayList<>();
 
         String[] categoryNames = {"Electronics", "Clothing", "Books", "Home & Garden", "Sports"};
 
         for (String name : categoryNames) {
-            Category category = new Category();
+            com.example.ecommerce.model.Category category = new com.example.ecommerce.model.Category();
             category.setName(name);
             category.setSlug(name.toLowerCase().replace(" ", "-"));
             category.setDescription("Test category: " + name);
-            category.setStatus("ACTIVE");
+            category.setActive(true);
 
             categories.add(categoryRepository.save(category));
         }
@@ -336,8 +336,8 @@ public class MigrationService {
     /**
      * Creates test users for demo purposes.
      */
-    private List<User> createTestUsers() {
-        List<User> users = new ArrayList<>();
+    private List<com.example.ecommerce.model.User> createTestUsers() {
+        List<com.example.ecommerce.model.User> users = new ArrayList<>();
 
         String[] userEmails = {
                 "user1@test.com", "user2@test.com", "user3@test.com",
@@ -345,12 +345,12 @@ public class MigrationService {
         };
 
         for (String email : userEmails) {
-            User user = new User();
+            com.example.ecommerce.model.User user = new com.example.ecommerce.model.User();
             user.setEmail(email);
-            user.setFirstName("Test");
-            user.setLastName("User");
+            user.setUsername(email.split("@")[0]);
+            user.setFullName("Test User");
             user.setPassword("hashed_password");
-            user.setStatus("ACTIVE");
+            user.setActive(true);
 
             users.add(userRepository.save(user));
         }
@@ -408,7 +408,7 @@ public class MigrationService {
             address.setStreet("123 Test St");
             address.setCity("Test City");
             address.setState("TS");
-            address.setZipCode("12345");
+            address.setPostalCode("12345");
             address.setCountry("USA");
 
             order.setShippingAddress(address);
@@ -437,117 +437,5 @@ public class MigrationService {
                 reviewRepository.save(review);
             }
         }
-    }
-}
-
-/**
- * Category model class.
- * Represents product categories in the e-commerce platform.
- */
-class Category {
-    private String id;
-    private String name;
-    private String slug;
-    private String description;
-    private String status;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSlug() {
-        return slug;
-    }
-
-    public void setSlug(String slug) {
-        this.slug = slug;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-}
-
-/**
- * User model class stub for testing.
- */
-class User {
-    private String id;
-    private String email;
-    private String firstName;
-    private String lastName;
-    private String password;
-    private String status;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 }
