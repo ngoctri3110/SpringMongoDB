@@ -1,0 +1,14 @@
+spring:
+  data:
+    mongodb:
+      uri: ${MONGO_URI}
+      auto-index-creation: false
+
+logging:
+  level:
+    root: WARN
+    org.springframework.data.mongodb: INFO
+    com.example.ecommerce: INFO
+
+server:
+  port: ${SERVER_PORT:8080}

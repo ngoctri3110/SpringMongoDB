@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: ecommerce-platform
+  data:
+    mongodb:
+      uri: mongodb://admin:admin123@localhost:27017/ecommerce?authSource=admin
+      auto-index-creation: true
+
+  jpa:
+    show-sql: false
+
+# Database seeding configuration
+seed:
+  database:
+    init: true  # Set to false to disable automatic database seeding
+
+jpa:
+    show-sql: false
+
+logging:
+  level:
+    root: INFO
+    org.springframework.data.mongodb: DEBUG
+    com.example.ecommerce: DEBUG
+
+server:
+  port: 8080
+  error:
+    include-message: always
+    include-binding-errors: always
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
