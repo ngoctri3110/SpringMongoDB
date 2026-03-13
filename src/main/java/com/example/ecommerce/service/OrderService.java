@@ -1,6 +1,8 @@
 package com.example.ecommerce.service;
 
 import com.example.ecommerce.dto.request.CreateOrderRequestDTO;
+import com.example.ecommerce.event.KafkaOrderEvent;
+import com.example.ecommerce.event.KafkaProducer;
 import com.example.ecommerce.exception.ResourceNotFoundException;
 import com.example.ecommerce.model.*;
 import com.example.ecommerce.repository.*;
@@ -22,6 +24,7 @@ import java.util.stream.Collectors;
  * Service class for managing order operations.
  * Handles order creation, retrieval, status updates, and cancellations.
  * Manages inventory decrement, cart clearing, and order validation.
+ * Publishes order events to Kafka for asynchronous processing.
  *
  * @author E-Commerce Platform
  * @version 1.0
@@ -36,6 +39,7 @@ public class OrderService {
     private final ProductRepository productRepository;
     private final InventoryRepository inventoryRepository;
     private final CartRepository cartRepository;
+    private final KafkaProducer kafkaProducer;
 
     /**
      * Creates a new order from a user's cart items.
@@ -109,6 +113,20 @@ public class OrderService {
 
         Order savedOrder = orderRepository.save(order);
         log.info("Order created successfully with order number: {}", orderNumber);
+
+        // Publish order creation event to Kafka
+        KafkaOrderEvent orderEvent = KafkaOrderEvent.builder()
+                .eventType("CREATED")
+                .orderId(savedOrder.getId())
+                .userId(userId)
+                .orderNumber(orderNumber)
+                .totalAmount(totalAmount)
+                .itemCount(orderItems.size())
+                .status("PENDING")
+                .timestamp(LocalDateTime.now())
+                .message("Order created successfully")
+                .build();
+        kafkaProducer.sendOrderEvent(savedOrder.getId(), orderEvent);
 
         // Clear user's cart after successful order creation
         cartRepository.deleteByUserId(userId);

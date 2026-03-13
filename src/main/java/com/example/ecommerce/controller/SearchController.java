@@ -30,17 +30,19 @@ public class SearchController {
     private final SearchService searchService;
 
     /**
-     * GET /api/v1/search/products - Tìm kiếm sản phẩm với filters
-     * 
-     * @param name Tên sản phẩm (optional)
-     * @param category Danh mục sản phẩm (optional)
-     * @param priceMin Giá tối thiểu (optional)
-     * @param priceMax Giá tối đa (optional)
-     * @param tags Tags (optional, có thể filter theo tag)
-     * @param page Số trang (mặc định: 0)
-     * @param size Số phần tử mỗi trang (mặc định: 10)
-     * @return ResponseEntity<PagedResponse<ProductResponse>> với status 200 OK
-     */
+      * GET /api/v1/search/products - Tìm kiếm sản phẩm với filters
+      * TODO: Implement product search in SearchService
+      * 
+      * @param name Tên sản phẩm (optional)
+      * @param category Danh mục sản phẩm (optional)
+      * @param priceMin Giá tối thiểu (optional)
+      * @param priceMax Giá tối đa (optional)
+      * @param tags Tags (optional, có thể filter theo tag)
+      * @param page Số trang (mặc định: 0)
+      * @param size Số phần tử mỗi trang (mặc định: 10)
+      * @return ResponseEntity<PagedResponse<ProductResponse>> với status 200 OK
+      */
+    /*
     @GetMapping("/products")
     public ResponseEntity<PagedResponse<ProductResponse>> searchProducts(
             @RequestParam(required = false) String name,
@@ -67,13 +69,16 @@ public class SearchController {
         
         return ResponseEntity.ok(response);
     }
+    */
 
     /**
-     * GET /api/v1/search/products/advanced - Tìm kiếm sản phẩm nâng cao
-     * 
-     * @param request AdvancedSearchRequest
-     * @return ResponseEntity<PagedResponse<ProductResponse>> với status 200 OK
-     */
+      * GET /api/v1/search/products/advanced - Tìm kiếm sản phẩm nâng cao
+      * TODO: Implement advanced search in SearchService
+      * 
+      * @param request AdvancedSearchRequest
+      * @return ResponseEntity<PagedResponse<ProductResponse>> với status 200 OK
+      */
+    /*
     @GetMapping("/products/advanced")
     public ResponseEntity<PagedResponse<ProductResponse>> advancedSearch(
             @Valid @RequestBody AdvancedSearchRequest request) {
@@ -96,4 +101,5 @@ public class SearchController {
         
         return ResponseEntity.ok(response);
     }
+    */
 }

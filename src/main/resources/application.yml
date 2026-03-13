@@ -9,6 +9,25 @@ spring:
   jpa:
     show-sql: false
 
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      acks: all
+      retries: 3
+      properties:
+        max.in.flight.requests.per.connection: 1
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: ecommerce-consumer-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.example.ecommerce.event"
+      auto-offset-reset: earliest
+      enable-auto-commit: true
+
 # Database seeding configuration
 seed:
   database:
